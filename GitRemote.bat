@@ -14,7 +14,6 @@ echo  [P]ush now
 echo  [M]ore
 goto choice
 
-
 :more
 echo  [U]pdate from server
 echo  [D]iff
@@ -24,7 +23,6 @@ echo  [B]ranching
 echo  [I]nit new repo
 echo  [E]ven More
 goto choice
-
 
 :choice
 choice /c cpmuisdrbklo /n /m "> "
@@ -41,13 +39,10 @@ if %errorlevel%==10 gitk & goto startOver
 if %errorlevel%==11 echo. & git log & goto startOver
 if %errorlevel%==12 goto console
 
-
-
 :startOver
 echo.
 echo.
 goto legend
-
 
 
 :newCommit
@@ -66,19 +61,16 @@ git commit -m "%msg%" --amend
 set msg=
 goto startOver
 
-
 :push
 echo.
 REM git push origin master
 git push
 goto startOver
 
-
 :pull
 echo.
 git pull
 goto startOver
-
 
 :init
 echo.
@@ -89,6 +81,7 @@ git add .
 git commit -m "Initial commit"
 git remote add origin %url%
 set url=
+git push origin master
 goto startOver
 
 :console
@@ -98,8 +91,6 @@ echo return with 'exit' command
 echo.
 cmd
 goto startOver
-
-
 
 
 
@@ -158,13 +149,23 @@ git merge %name%
 set name=
 goto startOver
 
+:rebaseBranch
+echo.
+set /p name="Rebase with branch named: "
+git rebase %name%
+set name=
+goto startOver
+
 
 
 :evenmore
 echo  Even More
-echo   [G]itK
+echo   [E]mpty message Commit
 echo   [A]mend Commit
+echo   [Q]uick Commit ^& Push
+echo   [G]itK
 echo   [O]pen CMD
+echo   [R]eturn
 
 choice /c rlnsdmp /n /m ">> "
 
