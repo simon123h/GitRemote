@@ -25,19 +25,17 @@ echo  [E]ven More
 goto choice
 
 :choice
-choice /c cpmuisdrbklo /n /m "> "
+choice /c cpmudslbie /n /m "> "
 if %errorlevel%==1 goto newCommit
 if %errorlevel%==2 goto push
 if %errorlevel%==3 goto more
 if %errorlevel%==4 goto pull
-if %errorlevel%==5 goto init
+if %errorlevel%==5 echo. & git diff & goto startOver
 if %errorlevel%==6 echo. & git status & goto startOver
-if %errorlevel%==7 echo. & git diff & goto startOver
-if %errorlevel%==8 goto recommit
-if %errorlevel%==9 goto branching
-if %errorlevel%==10 gitk & goto startOver
-if %errorlevel%==11 echo. & git log & goto startOver
-if %errorlevel%==12 goto console
+if %errorlevel%==7 echo. & git log & goto startOver
+if %errorlevel%==8 goto branching
+if %errorlevel%==9 goto init
+if %errorlevel%==10 goto evenMore
 
 :startOver
 echo.
@@ -50,14 +48,6 @@ echo.
 git add .
 set /p msg="Commit message: "
 git commit -m "%msg%"
-set msg=
-goto startOver
-
-:recommit
-echo.
-git add .
-set /p msg="Commit message: "
-git commit -m "%msg%" --amend
 set msg=
 goto startOver
 
@@ -84,14 +74,6 @@ set url=
 git push origin master
 goto startOver
 
-:console
-echo.
-echo Console
-echo return with 'exit' command
-echo.
-cmd
-goto startOver
-
 
 
 :branching
@@ -102,6 +84,7 @@ echo  [L]ist all
 echo  [S]witch to branch
 echo  [D]elete branch
 echo  [M]erge
+echo  re[B]ase
 echo  [P]ush all branches
 echo  [R]eturn
 
@@ -112,7 +95,8 @@ if %errorlevel%==3 goto newBranch
 if %errorlevel%==4 goto switchBranch
 if %errorlevel%==5 goto deleteBranch
 if %errorlevel%==6 goto mergeBranch
-if %errorlevel%==7 echo. & git push --all -u & goto startOver
+if %errorlevel%==7 goto rebaseBranch
+if %errorlevel%==8 echo. & git push --all -u & goto startOver
 
 :listBranches
 echo.
@@ -158,7 +142,7 @@ goto startOver
 
 
 
-:evenmore
+:evenMore
 echo  Even More
 echo   [E]mpty message Commit
 echo   [A]mend Commit
@@ -167,5 +151,50 @@ echo   [G]itK
 echo   [O]pen CMD
 echo   [R]eturn
 
-choice /c rlnsdmp /n /m ">> "
+choice /c reaqgo /n /m ">> "
+if %errorlevel%==1 goto startOver
+if %errorlevel%==2 goto emptyCommit
+if %errorlevel%==3 goto recommit
+if %errorlevel%==4 goto quickCommitPush
+if %errorlevel%==5 gitk & goto startOver
+if %errorlevel%==6 goto console
+
+:emptyCommit
+echo.
+git add .
+git commit --allow-empty-message -m ""
+set msg=
+goto startOver
+
+:recommit
+echo.
+git add .
+set /p msg="Commit message: "
+git commit -m "%msg%" --amend
+set msg=
+goto startOver
+
+:quickCommitPush
+echo.
+git add .
+set /p msg="Commit message: "
+git commit --allow-empty-message -m "%msg%"
+set msg=
+goto push
+
+:console
+echo.
+echo Console
+echo return with 'exit' command
+echo.
+cmd
+goto startOver
+
+
+
+
+
+
+
+
 
