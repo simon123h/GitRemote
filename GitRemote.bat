@@ -143,6 +143,7 @@ goto startOver
 
 
 :evenMore
+ehho.
 echo  Even More
 echo   [E]mpty message Commit
 echo   [A]mend Commit
