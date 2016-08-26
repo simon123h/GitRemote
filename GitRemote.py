@@ -1,51 +1,42 @@
-import subprocess
 from tkinter import *
+from functions import *
 
-
-def commandOutput(cmd):
-	return subprocess.check_output(cmd.split(' ')).decode('utf-8')
-	
-def commandText(cmd):
-	text.insert('end', commandOutput(cmd))
-
-def onKeyPress(event):
-	text.insert('end', 'You pressed %s\n' % (event.char, ))
-	print('key pressed')
-	
-
-def pull():
-	commandText('git pull')
-	
-def commit():
-	commandText('git add .')
-	commandText('git commit --allow-empty-message -m ""')
-	
-def push():
-	commandText('git push')
 
 root = Tk()
-#root.geometry('300x200')
-
-
+root.geometry('720x480')
+# splitting the window in button area and command output window
 top = Frame(root)
 bottom = Frame(root)
 top.pack(side=TOP)
 bottom.pack(side=BOTTOM, fill=BOTH, expand=True)
 
 
-# Pull Button
-pullButton = Button(root, text="Pull", command=pull)
-pullButton.pack(in_=top, side=LEFT)
-# Commit Button
-commitButton = Button(root, text="Commit", command=commit)
-commitButton.pack(in_=top, side=LEFT)
-# Push Button
-pushButton = Button(root, text="Push", command=push)
-pushButton.pack(in_=top, side=LEFT)
+# write the output of a batch command or a list of batch commands into the textbox
+def writeCommandOutput(commands):
+	text.insert('end', commandOutput(commands))
+	text.insert('end', '\n')
+
+# easy creation of a button
+def newButton(label, cmds = None, command = None):
+	if cmds is not None:
+		command = lambda: writeCommandOutput(cmds)
+	return Button(root, text = label, command = command, padx = 7, pady = 7)
+	
+	
+# Buttons
+newButton('Pull', ['git pull']).pack(in_=top, side=LEFT)
+
+newButton('Commit', ['git add .', 'git commit -m "refactor"']).pack(in_=top, side=LEFT)
+
+newButton('Push', ['git push']).pack(in_=top, side=LEFT)
+
+newButton('Status', ['git status']).pack(in_=top, side=LEFT)
+
+newButton('Log', ['git log']).pack(in_=top, side=LEFT)
 
 
 # Console window
-text = Text(root, width=35, height=15, background='black', foreground='green', font=('Courier', 11))
+text = Text(root, width=35, height=15, background='black', foreground='white', font=('Courier', 11))
 scrollbar = Scrollbar(root)
 scrollbar.config(command=text.yview)
 text.config(yscrollcommand=scrollbar.set)
@@ -53,7 +44,5 @@ scrollbar.pack(in_=bottom, side=RIGHT, fill=Y)
 text.pack(in_=bottom, side=LEFT, fill=BOTH, expand=True)
 
 
-
-root.bind('<KeyPress>', onKeyPress)
-#root.mainloop()
+root.mainloop()
 
