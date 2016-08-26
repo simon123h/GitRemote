@@ -88,7 +88,7 @@ echo  re[B]ase
 echo  [P]ush all branches
 echo  [R]eturn
 
-choice /c rlnsdmp /n /m ">> "
+choice /c rlnsdmbp /n /m ">> "
 if %errorlevel%==1 goto startOver
 if %errorlevel%==2 goto listBranches
 if %errorlevel%==3 goto newBranch
