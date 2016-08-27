@@ -1,9 +1,12 @@
-#from functions import *
+from functions import *
 # execute git actions and return the output
 
 
 def commit():
-	pass
-
+	message = prompt('Commit message', '')
+	
+	#output = git('commit -m "' + message + '"')
+	return message
+	return output
 	
 	
