@@ -1,5 +1,6 @@
 from tkinter import *
-from functions import *
+#from functions import *
+#import actions
 
 def main():
 	root = Tk()
@@ -11,30 +12,29 @@ def main():
 	bottom.pack(side=BOTTOM, fill=BOTH, expand=True)
 
 	# easy creation of a button
-	def newButton(label, cmds = None, command = None):
-		if cmds is not None:
-			command = lambda: writeCommandOutput(cmds)
+	def newButton(label, command = None):
+		command = lambda: text.insert('end', command())
 		return Button(root, text = label, command = command, padx = 7, pady = 7)
 		
 	# Buttons
 	newButton('Pull',
-				['git pull']
+				lambda: git('pull')
 	).pack(in_=top, side=LEFT)
 
 	newButton('Commit',
-				['git add .', 'git commit -m "refactor"']
+				actions.commit
 	).pack(in_=top, side=LEFT)
 
 	newButton('Push', 
-				['git push']
+				lambda: git('push')
 	).pack(in_=top, side=LEFT)
 
 	newButton('Status', 
-				['git status']
+				lambda: git('status')
 	).pack(in_=top, side=LEFT)
 
 	newButton('Log', 
-				['git log']
+				lambda: git('log')
 	).pack(in_=top, side=LEFT)
 
 

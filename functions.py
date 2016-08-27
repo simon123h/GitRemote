@@ -10,3 +10,9 @@ def commandOutput(cmd):
 		for command in cmd:
 			output.append(commandOutput(command))
 		return "\n".join(output)	
+
+		
+
+# execute any list of git commands and return output
+def git(commands):
+	return commandOutput(["git "+c for c in commands])
