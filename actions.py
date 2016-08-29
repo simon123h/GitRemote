@@ -2,11 +2,13 @@ from functions import *
 # execute git actions and return the output
 
 
-def commit():
+def commit(emptyMessage = False, amend = False):
 	message = prompt('Commit message', '')
+	if message == None:
+		return "Commit aborted."
+	if emptyMessage:
+		pass
+	return git('commit -m "' + message + '"')
 	
-	#output = git('commit -m "' + message + '"')
-	return message
-	return output
 	
 	
