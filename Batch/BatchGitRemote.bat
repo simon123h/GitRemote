@@ -71,7 +71,7 @@ git add .
 git commit -m "Initial commit"
 git remote add origin %url%
 set url=
-git push origin master
+git push --set-upstream origin master
 goto startOver
 
 
@@ -86,9 +86,10 @@ echo  [D]elete branch
 echo  [M]erge
 echo  re[B]ase
 echo  [P]ush all branches
+echo  [X] Set branch as new master
 echo  [R]eturn
 
-choice /c rlnsdmbp /n /m ">> "
+choice /c rlnsdmbpx /n /m ">> "
 if %errorlevel%==1 goto startOver
 if %errorlevel%==2 goto listBranches
 if %errorlevel%==3 goto newBranch
@@ -97,6 +98,7 @@ if %errorlevel%==5 goto deleteBranch
 if %errorlevel%==6 goto mergeBranch
 if %errorlevel%==7 goto rebaseBranch
 if %errorlevel%==8 echo. & git push --all -u & goto startOver
+if %errorlevel%==9 goto setNewMaster
 
 :listBranches
 echo.
@@ -137,6 +139,16 @@ goto startOver
 echo.
 set /p name="Rebase with branch named: "
 git rebase %name%
+set name=
+goto startOver
+
+:setNewMaster
+echo.
+set /p name="Name of branch to set as new master: "
+git checkout %name%
+git merge --strategy=ours master
+git checkout master
+git merge %name%
 set name=
 goto startOver
 
