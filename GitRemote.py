@@ -1,3 +1,4 @@
+#!python3
 from tkinter import *
 from functions import *
 import actions
