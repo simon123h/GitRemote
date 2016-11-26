@@ -27,3 +27,7 @@ def main():
 def status():
     git("status")
     # main()
+
+
+def quit():
+    exit()

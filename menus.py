@@ -4,7 +4,8 @@ main = [
             ['u', 'P[u]ll', f.pull],
             ['c', '[c]ommit', f.commit],
             ['p', '[p]ush', f.push],
-            ['m', '[m]ore', f.more]
+            ['m', '[m]ore', f.more],
+            ['Q', '', f.quit]
         ], "Main Menu", 0
 
 
