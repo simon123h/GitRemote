@@ -9,7 +9,7 @@ import subprocess
 #     process = subprocess.Popen(command.split(" "))
 #     # process = subprocess.Popen(command.split(" "), stdout=subprocess.PIPE)
 #     # output = process.communicate()[0]
-
+#
 
 # retrieve the output of a CMD command or a list of CMD commands
 def commandOutput(cmd):
