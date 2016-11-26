@@ -13,4 +13,4 @@ more = [
             ['C', '[C]ommit', f.commit],
             ['P', '[P]ush', f.push],
             ['r', '[r]eturn', f.main]
-        ], "More Menu", 1
+        ], "More Menu", 2
