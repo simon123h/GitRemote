@@ -1,3 +1,3 @@
 @echo off
-py D:\Sourcecode\py\GitRemote\GitRemote.py
+py -2 D:\Sourcecode\Python\GitRemote\GitRemote.py
 pause
