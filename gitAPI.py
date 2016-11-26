@@ -1,4 +1,5 @@
 import subprocess
+from ui import prettyPrint
 
 
 # retrieve the output of a CMD command or a list of CMD commands
@@ -21,7 +22,8 @@ def cmd(command, printOutput=True):
         else:
             error = None
         if printOutput:
-            print output
+            prettyPrint()
+            prettyPrint(output)
         return output, error
 
 

@@ -5,7 +5,7 @@ main = [
             ['c', '[c]ommit', f.commit],
             ['p', '[p]ush', f.push],
             ['m', '[m]ore', f.more]
-        ], "Main Menu", 1
+        ], "Main Menu", 0
 
 
 more = [
@@ -13,4 +13,4 @@ more = [
             ['C', '[C]ommit', f.commit],
             ['P', '[P]ush', f.push],
             ['r', '[r]eturn', f.main]
-        ], "More Menu", 2
+        ], "More Menu", 1

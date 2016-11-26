@@ -1,3 +1,4 @@
+from __future__ import print_function
 import msvcrt
 
 
@@ -5,12 +6,14 @@ currentMenu = None
 
 
 def menuInput(menu, k):
-    contents, title, indentDepth = menu
-    print k
+    contents, menuTitle, indentDepth = menu
+    # print(k)
     for entry in contents:
         if k == entry[0]:
-            entry[2]()
-            openMenu(currentMenu)
+            r = entry[2]()
+            if r is None:
+                usageStat(entry[1], menuTitle)
+                openMenu(currentMenu)
 
 
 def openMenu(menu):
@@ -18,21 +21,29 @@ def openMenu(menu):
     currentMenu = menu
     listeners = []
     contents, title, indentDepth = menu
-    indentDepth = 2 * indentDepth * " "
+    indentDepth = "  " + indentDepth * "|  "
 
-    print
-    print indentDepth + title
+    print(indentDepth)
+    print(indentDepth + title)
 
     for entry in contents:
         if entry[1] != '':
-            print indentDepth + "  " + entry[1]
+            print(indentDepth + "| " + entry[1])
         listeners.append(entry[0])
 
     while True:
         if msvcrt.kbhit():              # TODO: make UNIX/Mac friendly
             k = msvcrt.getch()
-            if k == "Q":
-                break
             if k in listeners:
-                menuInput(menu, k)
                 break
+    menuInput(menu, k)
+
+
+def prettyPrint(str=""):
+    indent = "  " + currentMenu[2] * "| "
+    print("\n".join([indent + s for s in str.split("\n")]))
+
+
+def usageStat(functionName, menuTitle):
+    with open("usageStats/stats.dat", "a+") as f:
+        print(menuTitle + " / " + functionName, file=f)
