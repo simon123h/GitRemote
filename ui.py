@@ -11,7 +11,7 @@ def menuInput(menu, k):
         if k == entry[0]:
             r = entry[2]()
             if r is None:
-                hit(entry[1])
+                hit(entry[2].__name__)
                 openMenu(currentMenu)
 
 
