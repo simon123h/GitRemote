@@ -1,18 +1,17 @@
 from __future__ import print_function
 import msvcrt
-
+from analytics import hit
 
 currentMenu = None
 
 
 def menuInput(menu, k):
     contents, menuTitle, indentDepth = menu
-    # print(k)
     for entry in contents:
         if k == entry[0]:
             r = entry[2]()
             if r is None:
-                usageStat(entry[1], menuTitle)
+                hit(entry[1])
                 openMenu(currentMenu)
 
 
@@ -28,7 +27,7 @@ def openMenu(menu):
 
     for entry in contents:
         if entry[1] != '':
-            print(indentDepth + "| " + entry[1])
+            print(indentDepth + "| [" + entry[0] + "] " + entry[1])
         listeners.append(entry[0])
 
     while True:
@@ -44,6 +43,10 @@ def prettyPrint(str=""):
     print("\n".join([indent + s for s in str.split("\n")]))
 
 
-def usageStat(functionName, menuTitle):
-    with open("usageStats/stats.dat", "a+") as f:
-        print(menuTitle + " / " + functionName, file=f)
+def welcomeScreen():
+    print()
+    print(" ############################################")
+    print(" ##                GitRemote               ##")
+    print(" ############################################")
+    print(" navigate by pressing the corresponding keys!")
+    print()

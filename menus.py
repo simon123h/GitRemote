@@ -1,17 +1,38 @@
 import functions as f
 
 main = [
-            ['u', 'P[u]ll', f.pull],
-            ['c', '[c]ommit', f.commit],
-            ['p', '[p]ush', f.push],
-            ['m', '[m]ore', f.more],
+            ['u', 'Pull', f.pull],
+            ['c', 'Commit', f.commit],
+            ['p', 'Push', f.push],
+            ['m', 'More', f.more],
+            ['d', '', f.diff],
+            ['s', '', f.status],
+            ['l', '', f.log],
+            ['b', '', f.branching],
+            ['i', '', f.init],
+            ['e', '', f.evenMore],
+            ['a', '', f.addAll],
             ['Q', '', f.quit]
         ], "Main Menu", 0
 
 
 more = [
-            ['s', '[s]tatus', f.status],
-            ['C', '[C]ommit', f.commit],
-            ['P', '[P]ush', f.push],
-            ['r', '[r]eturn', f.main]
-        ], "More Menu", 1
+            ['d', 'Diff', f.diff],
+            ['s', 'Status', f.status],
+            ['l', 'Log', f.log],
+            ['b', 'Branching Menu', f.branching],
+            ['i', 'Init new repo', f.init],
+            ['a', 'add All files', f.addAll],
+            ['e', 'even More', f.evenMore],
+            ['r', 'Return', f.main]
+        ], "More", 1
+
+
+evenMore = [
+            ['r', 'Return', f.more]
+        ], "Even More", 2
+
+
+branching = [
+            ['r', 'Return', f.more]
+        ], "Branching", 2

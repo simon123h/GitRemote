@@ -1,3 +1,6 @@
+from __future__ import print_function
+
+
 class _Getch:
     def __init__(self):
         try:
