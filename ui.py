@@ -1,5 +1,5 @@
 from __future__ import print_function
-import msvcrt
+from getchMod import getKey
 from analytics import hit
 
 currentMenu = None
@@ -31,11 +31,11 @@ def openMenu(menu):
         listeners.append(entry[0])
 
     while True:
-        if msvcrt.kbhit():              # TODO: make UNIX/Mac friendly
-            k = msvcrt.getch()
-            if k in listeners:
-                break
-    menuInput(menu, k)
+        k = getKey()
+        if ord(k) == 3:
+            break
+        if k in listeners:
+            menuInput(menu, k)
 
 
 def prettyPrint(str=""):
