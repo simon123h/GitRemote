@@ -83,7 +83,7 @@ def addAll():
     git("add .")
 
 
-def commit(systemDialog=True, parameters=""):
+def commit(systemDialog=False, parameters=""):
     git("add .")
     if systemDialog:
         git("commit"+parameters)
@@ -93,7 +93,7 @@ def commit(systemDialog=True, parameters=""):
 
 
 def recommit():
-    commit(True, " --amend")
+    commit(parameters=" --amend")
 
 
 def emptyCommit():
