@@ -3,3 +3,4 @@ push	1
 status	4
 pull	2
 diff	2
+addAllCommitPush	1

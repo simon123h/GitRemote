@@ -3,6 +3,12 @@ from gitAPI import git
 from ui import openMenu
 import menus
 
+# Python 2 compitability
+try:
+    input = raw_input
+except NameError:
+    pass
+
 
 """
     MENUS
