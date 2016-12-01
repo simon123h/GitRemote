@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 class _Getch:
     """Gets a single character from standard input.  Does not echo to the
 screen. From http://code.activestate.com/recipes/134892/"""
@@ -78,13 +80,3 @@ class _GetchMacCarbon:
 #     return k
 
 getKey = _Getch()
-
-
-def getKey2():
-    inkey = _Getch()
-    while True:
-        k = inkey()
-        if k != '':
-            break
-    print k
-    return k

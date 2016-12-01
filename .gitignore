@@ -1,3 +1,4 @@
 BatchGitRemoteLauncher.bat
 **.pyc
-usageStats/
+usageStats
+__pycache__
