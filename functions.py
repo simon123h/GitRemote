@@ -67,7 +67,6 @@ def pull():
             pullKeepLocal()
 
 
-
 def pullDiscardLocal():
     git("reset --hard")
     git("pull")
@@ -111,7 +110,9 @@ def commit(systemDialog=False, parameters=""):
         git("commit"+parameters)
     else:
         message = input("Commit message: ")
-        git("commit -m '" + message + "'"+parameters)
+        out, error = git("commit -m '" + message + "'"+parameters)
+
+    print(out)
 
 
 def recommit():
