@@ -1,7 +1,7 @@
-commit	9
-push	5
+commit	10
+push	6
 status	6
-pull	6
+pull	8
 diff	3
 addAllCommitPush	2
 pullKeepLocal	1
