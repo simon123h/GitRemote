@@ -51,20 +51,19 @@ def openSimple():
 def pull():
     out, error = git("pull")
 
-    print(out)
-
-    if "Aktualisiere" in out:
+    if "Aktualisiere " == out[:13] or out == "":
         from getchMod import getKey
         k = "_"
-        while k not in "kd":
+        while k not in "kdx":
             print("Local changes might be overwritten by merge!")
             print("Please choose merge strategy:")
             print("[k] Keep local changes")
             print("[d] Discard local changes")
+            print("[x] abort")
             k = getKey()
         if k == "d":
             pullDiscardLocal()
-        else:
+        elif k == "k":
             pullKeepLocal()
 
 
