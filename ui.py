@@ -10,6 +10,7 @@ def menuInput(menu, k):
     for entry in contents:
         if k == entry[0]:
             if entry[3] != '':
+                prettyPrint()
                 prettyPrint(entry[3])
             r = entry[2]()
             if r is None:
