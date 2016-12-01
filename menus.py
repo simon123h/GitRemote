@@ -50,7 +50,7 @@ branching = [
             ['p', 'Push all branches', f.pushAllBranches, 'Pushing all branches'],
             ['x', 'Set branch as new master', f.setNewMaster, 'Set current branch as new master'],
             ['r', 'Return', f.main]
-        ], "Branching", 1
+        ], "Branching", 2
 
 
 committing = [
@@ -58,14 +58,14 @@ committing = [
             ['a', 'Re-Commit', f.recommit, 'Re-Commit (Amend commit)'],
             ['e', 'Empty message commit', f.emptyCommit, 'New commit (empty message allowed)'],
             ['r', 'Return', f.main, '']
-        ], "Committing Options", 1
+        ], "Committing Options", 3
 
 
 pulling = [
             ['d', 'Pull and discard local changes', f.pullDiscardLocal, 'Pulling from server, all local changes will be discarded'],
             ['k', 'Pull and keep local changes', f.pullKeepLocal, 'Pulling from server, but local changes are kept for the next commit'],
             ['r', 'Return', f.main, '']
-        ], "Pulling Options", 1
+        ], "Pulling Options", 3
 
 
 simple = [
