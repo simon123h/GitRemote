@@ -51,20 +51,21 @@ def openSimple():
 def pull():
     out, error = git("pull")
 
-    if "error: " in out and "local changes" in out:
+    print(out)
+
+    if "Aktualisiere" in out:
         from getchMod import getKey
-        k = ""
+        k = "_"
         while k not in "kd":
-            print("")
-            print("[k] Sync local changes to Git")
+            print("Local changes might be overwritten by merge!")
+            print("Please choose merge strategy:")
+            print("[k] Keep local changes")
             print("[d] Discard local changes")
             k = getKey()
         if k == "d":
-            print("pullDiscardLocal()")
-            # pullDiscardLocal()
+            pullDiscardLocal()
         else:
-            print("pullKeepLocal()")
-            # pullKeepLocal()
+            pullKeepLocal()
 
 
 
