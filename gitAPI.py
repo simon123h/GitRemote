@@ -1,11 +1,12 @@
 import subprocess
 from ui import prettyPrint
+import re
 
 
 # retrieve the output of a CMD command or a list of CMD commands
 def cmd(command, printOutput=True):
     if type(command) is str:
-        command = command.split(' ')
+        command = re.findall(r"(?:[^\s,']|'(?:\\.|[^'])*')+", command)
         process = subprocess.Popen(command, stdout=subprocess.PIPE)
         output, error = process.communicate()[0:2]
         return output, error

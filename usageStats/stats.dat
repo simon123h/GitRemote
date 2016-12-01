@@ -1,4 +1,4 @@
-commit	5
+commit	6
 push	3
 status	6
 pull	3
@@ -6,4 +6,4 @@ diff	3
 addAllCommitPush	2
 pullKeepLocal	1
 console	1
-simpleSync	3
+simpleSync	5
