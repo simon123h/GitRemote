@@ -1,9 +1,14 @@
 from __future__ import print_function
+import os
+
+databasePath = os.path.dirname(
+                os.path.realpath(__file__)
+                ) + "/usageStats/stats.dat"
 
 
 # increment counter in usageStats for function 'functionName'
 def hit(functionName):
-    with open("usageStats/stats.dat", "a+") as f:
+    with open(databasePath, "a+") as f:
         lines = f.read().splitlines()
         output = []
         found = False
@@ -22,5 +27,5 @@ def hit(functionName):
         if not found:
             output.append(functionName + "\t1")
 
-    with open("usageStats/stats.dat", "w+") as f:
+    with open(databasePath, "w+") as f:
         print("\n".join(output), file=f)

@@ -1,5 +1,5 @@
 from __future__ import print_function
-from gitAPI import git
+from gitAPI import git, cmd
 from ui import openMenu
 import menus
 
@@ -39,6 +39,10 @@ def pulling():
     openMenu(menus.pulling)
 
 
+def openSimple():
+    openMenu(menus.simple)
+
+
 """
     Pulling & Pushing
 """
@@ -51,6 +55,7 @@ def pull():
 def pullDiscardLocal():
     git("reset --hard")
     git("pull")
+    main()
 
 
 def pullKeepLocal():
@@ -58,6 +63,7 @@ def pullKeepLocal():
     git("stash")       # save local changes in stash & remove from working tree
     git("pull")        # pull from remote
     git("stash pop")   # reapply local changes
+    main()
 
 
 def push():
@@ -89,7 +95,7 @@ def commit(systemDialog=False, parameters=""):
         git("commit"+parameters)
     else:
         message = input("Commit message: ")
-        git("commit -m ''" + message + "'"+parameters)
+        git("commit -m '" + message + "'"+parameters)
 
 
 def recommit():
@@ -103,7 +109,7 @@ def emptyCommit():
 def addAllCommitPush():
     git("add .")
     message = input("Commit message: ")
-    git("commit -m ''" + message + "'")
+    git("commit -m '" + message + "'")
     push()
 
 
@@ -127,6 +133,15 @@ def log():
 def quit():
     exit()
 
+
+def console():
+    print("Enter console commands:")
+    while True:
+        command = input()
+        if command == "" or command == "exit":
+            break
+        o, e = cmd(str(command))
+        print(o)
 
 """
     Branching
@@ -176,22 +191,23 @@ def pushAllBranches():
     git("push --all -u")
 
 
+def simpleSync():
+    out = git("pull")
 
+    if "error: " in out and "local changes" in out:
+        from getchMod import getKey
+        k = ""
+        while k not in "kd":
+            print("")
+            print("[k] Sync local changes to Git")
+            print("[d] Discard local changes")
+            k = getKey()
+        if k == "d":
+            pullDiscardLocal()
+        else:
+            pullKeepLocal()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    pass
+    git("add .")
+    message = input("Commit message: ")
+    git("commit -m '" + message + "'")
+    push()

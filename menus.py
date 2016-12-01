@@ -1,5 +1,6 @@
 import functions as f
 
+
 main = [
             ['u', 'Pull', f.pull],
             ['c', 'Commit', f.commit],
@@ -25,16 +26,18 @@ more = [
             ['l', 'Log', f.log],
             ['b', 'Branching Menu', f.branching],
             ['a', 'add All files', f.addAll],
+            ['c', 'Open Console', f.console],
             ['i', 'Init new repo', f.init],
             ['C', 'Committing Options', f.committing],
             ['P', 'Pulling Options', f.pulling],
-            ['e', 'even More', f.evenMore],
+            ['m', 'even More', f.evenMore],
             ['r', 'Return', f.main],
             ['Q', 'Quit', f.quit]
         ], "More", 1
 
 
 evenMore = [
+            ['i', 'Simple GitRemote', f.openSimple],
             ['r', 'Return', f.more]
         ], "Even More", 2
 
@@ -65,3 +68,9 @@ pulling = [
             ['k', 'Pull and keep local changes', f.pullKeepLocal],
             ['r', 'Return', f.main]
         ], "Pulling Options", 1
+
+
+simple = [
+            ['s', 'Sync', f.simpleSync],
+            ['r', 'Return', f.main]
+        ], "Simple GitRemote", 0

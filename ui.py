@@ -13,6 +13,8 @@ def menuInput(menu, k):
             if r is None:
                 hit(entry[2].__name__)
                 openMenu(currentMenu)
+            else:
+                prettyPrint()
 
 
 def openMenu(menu):

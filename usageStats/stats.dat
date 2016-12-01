@@ -1,6 +1,9 @@
-commit	3
-push	1
-status	4
-pull	2
-diff	2
-addAllCommitPush	1
+commit	4
+push	3
+status	6
+pull	3
+diff	3
+addAllCommitPush	2
+pullKeepLocal	1
+console	1
+simpleSync	3
