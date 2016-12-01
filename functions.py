@@ -110,9 +110,7 @@ def commit(systemDialog=False, parameters=""):
         git("commit"+parameters)
     else:
         message = input("Commit message: ")
-        out, error = git("commit -m '" + message + "'"+parameters)
-
-    print(out)
+        git("commit -m '" + message + "'"+parameters)
 
 
 def recommit():
