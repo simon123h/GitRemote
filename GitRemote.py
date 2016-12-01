@@ -3,11 +3,7 @@
 import ui
 import menus
 
-<<<<<<< Updated upstream
 # remote change
-=======
-# local change
->>>>>>> Stashed changes
 
 ui.welcomeScreen()
 ui.openMenu(menus.main)
