@@ -206,6 +206,13 @@ def pushAllBranches():
     git("push --all -u")
 
 
+def workOnOlderVersion():
+    id = input("Jump back to version id: ")
+    name = input("Name of new working branch: ").replace(" ", "-")
+    git("checkout -b "+name+" "+id)
+    git("push -u origin "+name)
+
+
 def simpleSync():
     pull()
     git("add .")

@@ -9,6 +9,8 @@ def menuInput(menu, k):
     contents, menuTitle, indentDepth = menu
     for entry in contents:
         if k == entry[0]:
+            if entry[3] != '':
+                prettyPrint(entry[3])
             r = entry[2]()
             if r is None:
                 hit(entry[2].__name__)
