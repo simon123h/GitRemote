@@ -49,7 +49,23 @@ def openSimple():
 
 
 def pull():
-    git("pull")
+    out, error = git("pull")
+
+    if "error: " in out and "local changes" in out:
+        from getchMod import getKey
+        k = ""
+        while k not in "kd":
+            print("")
+            print("[k] Sync local changes to Git")
+            print("[d] Discard local changes")
+            k = getKey()
+        if k == "d":
+            print("pullDiscardLocal()")
+            # pullDiscardLocal()
+        else:
+            print("pullKeepLocal()")
+            # pullKeepLocal()
+
 
 
 def pullDiscardLocal():
@@ -192,21 +208,7 @@ def pushAllBranches():
 
 
 def simpleSync():
-    out = git("pull")
-
-    if "error: " in out and "local changes" in out:
-        from getchMod import getKey
-        k = ""
-        while k not in "kd":
-            print("")
-            print("[k] Sync local changes to Git")
-            print("[d] Discard local changes")
-            k = getKey()
-        if k == "d":
-            pullDiscardLocal()
-        else:
-            pullKeepLocal()
-
+    pull()
     git("add .")
     message = input("Commit message: ")
     git("commit -m '" + message + "'")
