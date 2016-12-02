@@ -9,6 +9,7 @@ def cmd(command, printOutput=True):
         command = re.findall(r"(?:[^\s,']|'(?:\\.|[^'])*')+", command)
         process = subprocess.Popen(command, stdout=subprocess.PIPE)
         output, error = process.communicate()[0:2]
+        output = output.decode()
         return output, error
     elif type(command) is list:
         output = []
