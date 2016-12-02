@@ -37,8 +37,11 @@ class _GetchWindows:
 
     def __call__(self):
         import msvcrt
-        return msvcrt.getch().decode()
-
+        k = msvcrt.getch()
+        try:
+            return k.decode()
+        except:
+            return '~'
 
 class _GetchMacCarbon:
     """
