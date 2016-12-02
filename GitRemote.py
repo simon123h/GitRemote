@@ -8,3 +8,4 @@ ui.openMenu(menus.main)
 
 
 # TODO: KOMMENTARE!!
+# TODO: Rename getchMod to getch 
