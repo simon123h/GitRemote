@@ -1,5 +1,5 @@
 from __future__ import print_function
-from gitAPI import git, cmd
+from gitAPI import git
 from ui import openMenu
 import menus
 
@@ -52,7 +52,7 @@ def pull():
     out, error = git("pull")
 
     if "Aktualisiere " == out[:13] or out == "":
-        from getchMod import getKey
+        from getch import getKey
         k = "_"
         while k not in "kdx":
             print("Local changes might be overwritten by merge!")
@@ -150,6 +150,7 @@ def quit():
 
 
 def console():
+    from gitAPI import cmd
     print("Enter console commands:")
     while True:
         command = input()

@@ -1,5 +1,5 @@
 from __future__ import print_function
-from getchMod import getKey
+from getch import getKey
 from analytics import hit
 
 currentMenu = None
