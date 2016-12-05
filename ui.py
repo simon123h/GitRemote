@@ -44,7 +44,7 @@ def openMenu(menu):
 
 
 def prettyPrint(str=""):
-    indent = "  " + currentMenu[2] * "| "
+    indent = "  " + (currentMenu[2] + 1) * "|  "
     print("\n".join([indent + s for s in str.split("\n")]))
 
 

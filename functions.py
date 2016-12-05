@@ -142,7 +142,7 @@ def diff():
 
 
 def log():
-    git("log")
+    git("log --reverse")
 
 
 def quit():
