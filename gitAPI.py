@@ -12,7 +12,7 @@ def cmd(command, printOutput=True):
         try:
             output = output.decode()
         except:
-            prettyPrint("GitRemote ERROR: Could not decode output to ASCII!")
+            pass
         return output, error
     elif type(command) is list:
         output = []
