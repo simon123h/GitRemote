@@ -1,6 +1,6 @@
 from __future__ import print_function
 from gitAPI import git
-from ui import openMenu
+from ui import openMenu, prettyPrint
 import menus
 
 # Python 2 compitability
@@ -55,11 +55,11 @@ def pull():
         from getch import getKey
         k = "_"
         while k not in "kdx":
-            print("Local changes might be overwritten by merge!")
-            print("Please choose merge strategy:")
-            print("[k] Keep local changes")
-            print("[d] Discard local changes")
-            print("[x] abort")
+            prettyPrint("Local changes might be overwritten by merge!")
+            prettyPrint("Please choose merge strategy:")
+            prettyPrint("[k] Keep local changes")
+            prettyPrint("[d] Discard local changes")
+            prettyPrint("[x] abort")
             k = getKey()
         if k == "d":
             pullDiscardLocal()
@@ -111,6 +111,9 @@ def commit(systemDialog=False, parameters=""):
     else:
         message = input("Commit message: ")
         git("commit -m '" + message + "'"+parameters)
+    prettyPrint("")
+    prettyPrint("[u] Push commits to remote now")
+    prettyPrint("")
 
 
 def recommit():
