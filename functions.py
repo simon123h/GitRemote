@@ -112,7 +112,7 @@ def commit(systemDialog=False, parameters=""):
         message = input("Commit message: ")
         git("commit -m '" + message + "'"+parameters)
     prettyPrint("")
-    prettyPrint("[u] Push commits to remote now")
+    prettyPrint("[p] Push commits to remote now")
     prettyPrint("")
 
 
