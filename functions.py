@@ -151,16 +151,17 @@ def addAll():
 def commit(systemDialog=False, parameters=""):
     git("add .")
     if systemDialog:
-        git("commit" + parameters)
+        out, error = git("commit" + parameters)
     else:
         message = input("Commit message: ")
-        git("commit -m '" + message + "'" + parameters)
+        out, error = git("commit -m '" + message + "'" + parameters)
     prettyPrint("")
-    if confirmDialog("Push to remote now? (y/n)"):
-        push()
-    else:
-        prettyPrint("Press [p] to push commits to remote")
-    prettyPrint("")
+    if "nothing to commit" not in out:
+        if confirmDialog("Push to remote now? (y/n)"):
+            push()
+        else:
+            prettyPrint("Press [p] to push commits to remote")
+        prettyPrint("")
 
 
 def recommit():
