@@ -219,6 +219,8 @@ def listModifiedRepos():
     for repo in unCommittedRepos:
         prettyPrint("  ", os.path.relpath(repo, cwd))
 
+    # change back to CWD
+    os.chdir(cwd)
 
 """
     Minor functions
