@@ -107,10 +107,10 @@ def addAll():
 def commit(systemDialog=False, parameters=""):
     git("add .")
     if systemDialog:
-        git("commit"+parameters)
+        git("commit" + parameters)
     else:
         message = input("Commit message: ")
-        git("commit -m '" + message + "'"+parameters)
+        git("commit -m '" + message + "'" + parameters)
     prettyPrint("")
     prettyPrint("[p] Push commits to remote now")
     prettyPrint("")
@@ -162,6 +162,7 @@ def console():
         o, e = cmd(str(command))
         print(o)
 
+
 """
     Branching
 """
@@ -173,37 +174,37 @@ def listBranches():
 
 def newBranch():
     name = input("Create branch named: ")
-    git("checkout -b "+name)
-    git("push -u origin "+name)
+    git("checkout -b " + name)
+    git("push -u origin " + name)
 
 
 def switchBranch():
     name = input("Switch to branch named: ")
-    git("checkout "+name)
-    git("push -u origin "+name)
+    git("checkout " + name)
+    git("push -u origin " + name)
 
 
 def deleteBranch():
     name = input("Delete branch named: ")
-    git("branch -d "+name)
+    git("branch -d " + name)
 
 
 def merge():
     name = input("Merge with branch named: ")
-    git("merge "+name)
+    git("merge " + name)
 
 
 def rebase():
     name = input("Rebase from branch named: ")
-    git("rebase "+name)
+    git("rebase " + name)
 
 
 def setNewMaster():
     name = input("Name of branch to set as new master: ")
-    git("checkout "+name)
+    git("checkout " + name)
     git("merge --strategy=ours master")
     git("checkout master")
-    git("merge "+name)
+    git("merge " + name)
 
 
 def pushAllBranches():
@@ -213,8 +214,8 @@ def pushAllBranches():
 def workOnOlderVersion():
     id = input("Jump back to version id: ")
     name = input("Name of new working branch: ").replace(" ", "-")
-    git("checkout -b "+name+" "+id)
-    git("push -u origin "+name)
+    git("checkout -b " + name + " " + id)
+    git("push -u origin " + name)
 
 
 def simpleSync():
