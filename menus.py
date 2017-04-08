@@ -14,6 +14,7 @@ main = [
             ['e', '', f.evenMore, ''],
             ['P', '', f.pulling, ''],
             ['U', '', f.updateAllRepos, 'Recursively update all git repos in folder'],
+            ['C', '', f.committing, ''],
             ['o', '', f.console, 'Opening Console'],
             ['Q', '', f.quit, 'Quitting']
         ], "Main Menu", 0
@@ -58,6 +59,7 @@ committing = [
             ['q', 'Add all, commit and push', f.addAllCommitPush, 'Quickly commit all changes and push them'],
             ['a', 'Re-Commit', f.recommit, 'Re-Commit (Amend commit)'],
             ['e', 'Empty message commit', f.emptyCommit, 'New commit (empty message allowed)'],
+            ['l', 'List all modified repos', f.listModifiedRepos, 'Recursively list all modified repos ahead of master'],
             ['r', 'Return', f.main, '']
         ], "Committing Options", 3
 
