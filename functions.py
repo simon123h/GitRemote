@@ -103,7 +103,10 @@ def updateAllRepos():
     # recursively find all git repos within currend working dir
     def findRepos(curdir):
         res = []
-        subdirs = [name for name in os.listdir(curdir) if os.path.isdir(os.path.join(curdir, name))]
+        try:
+            subdirs = [name for name in os.listdir(curdir) if os.path.isdir(os.path.join(curdir, name))]
+        except:
+            subdirs = []
         if ".git" in subdirs:
             res.append(curdir)
         for subdir in subdirs:
@@ -186,7 +189,10 @@ def listModifiedRepos():
     # recursively find all git repos within currend working dir
     def findRepos(curdir):
         res = []
-        subdirs = [name for name in os.listdir(curdir) if os.path.isdir(os.path.join(curdir, name))]
+        try:
+            subdirs = [name for name in os.listdir(curdir) if os.path.isdir(os.path.join(curdir, name))]
+        except:
+            subdirs = []
         if ".git" in subdirs:
             res.append(curdir)
         for subdir in subdirs:
