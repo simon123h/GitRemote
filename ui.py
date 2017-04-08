@@ -1,6 +1,7 @@
 from __future__ import print_function
 from getch import getKey
 from analytics import hit
+import sys
 
 currentMenu = None
 
@@ -47,6 +48,13 @@ def prettyPrint(message="", *messages):
     message = " ".join([str(m) for m in ([message] + list(messages))])
     indent = "  " + (currentMenu[2] + 1) * "|  "
     print("\n".join([indent + s for s in message.split("\n")]))
+
+
+# print a progress percentage that updates in the same line
+def progressPrint(percent):
+    indent = "  " + (currentMenu[2] + 1) * "|  "
+    sys.stdout.write(indent + ("%3d%%\r" % percent))
+    sys.stdout.flush()
 
 
 # a simple user confirmation dialog, returns True on confirmation, False otherwise

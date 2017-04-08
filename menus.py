@@ -13,7 +13,7 @@ main = [
             ['i', '', f.init, 'Initiate new repo'],
             ['e', '', f.evenMore, ''],
             ['P', '', f.pulling, ''],
-            ['U', '', f.updateAllRepos, 'Recursively updating all git repos in folder'],
+            ['U', '', f.updateAllRepos, 'Recursively update all git repos in folder'],
             ['o', '', f.console, 'Opening Console'],
             ['Q', '', f.quit, 'Quitting']
         ], "Main Menu", 0

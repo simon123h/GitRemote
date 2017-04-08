@@ -33,7 +33,7 @@ def cmd(command, printOutput=True):
 
 
 # execute any list of git commands and return output
-def git(command):
+def git(command, printOutput=True):
     if type(command) is str:
         command = [command]
-    return cmd(["git " + c for c in command])
+    return cmd(["git " + c for c in command], printOutput)

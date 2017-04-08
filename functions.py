@@ -1,6 +1,6 @@
 from __future__ import print_function
 from gitAPI import git
-from ui import openMenu, prettyPrint, confirmDialog
+from ui import openMenu, prettyPrint, progressPrint, confirmDialog
 import menus
 import os
 
@@ -98,6 +98,8 @@ def init():
 
 # execute a git pull in all repos found recursively starting from the current working directory
 def updateAllRepos():
+    prettyPrint("Searching for repos..")
+
     # recursively find all git repos within currend working dir
     def findRepos(curdir):
         res = []
@@ -109,16 +111,34 @@ def updateAllRepos():
         return res
     cwd = os.getcwd()
     repos = findRepos(os.getcwd())
-    prettyPrint("Found ", len(repos), " repos.")
-    if len(repos) > 2 or confirmDialog("Proceed (y/n)?"):
-        # change to repo's directories and execute git pull
-        for repo in repos:
-            if confirmDialog("Pull " + repo + "? (y/n)?"):
-                prettyPrint("Pulling ", os.path.basename(repo))
-                os.chdir(repo)
-                out, error = git("pull")
-        # change back to CWD
-        os.chdir(cwd)
+
+    # check with git status which ones are outdated
+    prettyPrint("Found ", len(repos), " repos. Checking for update status..")
+    outdatedRepos = []
+    i = 0
+    for repo in repos:
+        progressPrint(round(100*i/len(repos)))
+        i += 1
+        os.chdir(repo)
+        git("remote update", False)
+        out, error = git("status -uno", False)
+        if "up-to-date" not in out and "behind" in out:
+            outdatedRepos.append(repo)
+    # change back to CWD
+    os.chdir(cwd)
+
+    # change to repo's directories and execute git pull
+    prettyPrint("Found ", len(outdatedRepos), " outdated repos.")
+    if len(outdatedRepos) != 0:
+        if len(outdatedRepos) < 3 or confirmDialog("Proceed? (y/n)"):
+            prettyPrint()
+            for repo in outdatedRepos:
+                if confirmDialog("Pull " + repo + "? (y/n)"):
+                    prettyPrint("Pulling ", os.path.basename(repo))
+                    os.chdir(repo)
+                    out, error = git("pull")
+            # change back to CWD
+            os.chdir(cwd)
 
 
 """
