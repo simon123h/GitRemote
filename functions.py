@@ -181,7 +181,7 @@ def switchBranch():
 
 
 def deleteBranch():
-    name = input("Switch to branch named: ")
+    name = input("Delete branch named: ")
     git("branch -d "+name)
 
 
@@ -191,7 +191,7 @@ def merge():
 
 
 def rebase():
-    name = input("Switch to branch named: ")
+    name = input("Rebase from branch named: ")
     git("rebase "+name)
 
 
