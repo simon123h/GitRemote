@@ -222,6 +222,7 @@ def listModifiedRepos():
     # change back to CWD
     os.chdir(cwd)
 
+
 """
     Minor functions
 """
