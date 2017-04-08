@@ -156,7 +156,10 @@ def commit(systemDialog=False, parameters=""):
         message = input("Commit message: ")
         git("commit -m '" + message + "'" + parameters)
     prettyPrint("")
-    prettyPrint("[p] Push commits to remote now")
+    if confirmDialog("Push to remote now? (y/n)"):
+        push()
+    else:
+        prettyPrint("Press [p] to push commits to remote")
     prettyPrint("")
 
 
