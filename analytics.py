@@ -12,6 +12,7 @@ try:
 except IOError:
     file = open(databasePath, 'w')
 
+
 # increment counter in usageStats for function 'functionName'
 def hit(functionName):
     with open(databasePath, "r") as f:
