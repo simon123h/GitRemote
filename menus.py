@@ -13,6 +13,7 @@ main = [
             ['i', '', f.init, 'Initiate new repo'],
             ['e', '', f.evenMore, ''],
             ['P', '', f.pulling, ''],
+            ['U', '', f.updateAllRepos, 'Recursively updating all git repos in folder'],
             ['o', '', f.console, 'Opening Console'],
             ['Q', '', f.quit, 'Quitting']
         ], "Main Menu", 0
@@ -64,6 +65,7 @@ committing = [
 pulling = [
             ['d', 'Pull and discard local changes', f.pullDiscardLocal, 'Pulling from server, all local changes will be discarded'],
             ['k', 'Pull and keep local changes', f.pullKeepLocal, 'Pulling from server, but local changes are kept for the next commit'],
+            ['U', 'Pull all repos', f.updateAllRepos, 'Recursively updating all git repos in folder'],
             ['r', 'Return', f.main, '']
         ], "Pulling Options", 3
 

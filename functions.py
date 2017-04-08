@@ -1,7 +1,8 @@
 from __future__ import print_function
 from gitAPI import git
-from ui import openMenu, prettyPrint
+from ui import openMenu, prettyPrint, confirmDialog
 import menus
+import os
 
 # Python 2 compitability
 try:
@@ -93,6 +94,31 @@ def init():
         git("commit -m 'Initial commit'")
         git("remote add origin " + url)
         git("push --set-upstream origin master")
+
+
+# execute a git pull in all repos found recursively starting from the current working directory
+def updateAllRepos():
+    # recursively find all git repos within currend working dir
+    def findRepos(curdir):
+        res = []
+        subdirs = [name for name in os.listdir(curdir) if os.path.isdir(os.path.join(curdir, name))]
+        if ".git" in subdirs:
+            res.append(curdir)
+        for subdir in subdirs:
+            res += findRepos(os.path.join(curdir, subdir))
+        return res
+    cwd = os.getcwd()
+    repos = findRepos(os.getcwd())
+    prettyPrint("Found ", len(repos), " repos.")
+    if len(repos) > 2 or confirmDialog("Proceed (y/n)?"):
+        # change to repo's directories and execute git pull
+        for repo in repos:
+            if confirmDialog("Pull " + repo + "? (y/n)?"):
+                prettyPrint("Pulling ", os.path.basename(repo))
+                os.chdir(repo)
+                out, error = git("pull")
+        # change back to CWD
+        os.chdir(cwd)
 
 
 """
