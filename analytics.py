@@ -6,9 +6,15 @@ databasePath = os.path.dirname(
                 ) + "/usageStats/stats.dat"
 
 
+# create database file if not existent
+try:
+    file = open(databasePath, 'r')
+except IOError:
+    file = open(databasePath, 'w')
+
 # increment counter in usageStats for function 'functionName'
 def hit(functionName):
-    with open(databasePath, "a+") as f:
+    with open(databasePath, "r") as f:
         lines = f.read().splitlines()
         output = []
         found = False
