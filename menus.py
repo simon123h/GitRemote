@@ -46,7 +46,7 @@ branching = [
             ['l', 'List branches', f.listBranches, 'Listing all branches'],
             ['s', 'Switch to branch', f.switchBranch, ''],
             ['d', 'Delete branch', f.deleteBranch, ''],
-            ['x', 'Work on previous version', f.setNewMaster, ''],
+            ['v', 'Work on previous version', f.workOnOlderVersion, ''],
             ['m', 'Merge', f.merge, ''],
             ['b', 'Rebase', f.rebase, ''],
             ['p', 'Push all branches', f.pushAllBranches, 'Pushing all branches'],
