@@ -96,7 +96,8 @@ def init():
         git("push --set-upstream origin master")
 
 
-# execute a git pull in all repos found recursively starting from the current working directory
+# execute a git pull in all repos found recursively starting from the
+# current working directory
 def updateAllRepos():
     prettyPrint("Searching for repos..")
 
@@ -104,7 +105,8 @@ def updateAllRepos():
     def findRepos(curdir):
         res = []
         try:
-            subdirs = [name for name in os.listdir(curdir) if os.path.isdir(os.path.join(curdir, name))]
+            subdirs = [name for name in os.listdir(
+                curdir) if os.path.isdir(os.path.join(curdir, name))]
         except:
             subdirs = []
         if ".git" in subdirs:
@@ -120,12 +122,12 @@ def updateAllRepos():
     outdatedRepos = []
     i = 0
     for repo in repos:
-        progressPrint(round(100*i/len(repos)))
+        progressPrint(round(100 * i / len(repos)))
         i += 1
         os.chdir(repo)
         git("remote update", False)
         out, error = git("status -uno", False)
-        if "up-to-date" not in out and "behind" in out:
+        if ("up-to-date" not in out and "behind" in out) or ("auf dem selben Stand" not in out and "hinterher" in out):
             outdatedRepos.append(repo)
 
     # change to repo's directories and execute git pull
@@ -182,7 +184,8 @@ def addAllCommitPush():
     push()
 
 
-# search recursively for git repos with unstaged changes / not pushed commits and list them
+# search recursively for git repos with unstaged changes / not pushed
+# commits and list them
 def listModifiedRepos():
     prettyPrint("Searching for repos..")
 
@@ -190,7 +193,8 @@ def listModifiedRepos():
     def findRepos(curdir):
         res = []
         try:
-            subdirs = [name for name in os.listdir(curdir) if os.path.isdir(os.path.join(curdir, name))]
+            subdirs = [name for name in os.listdir(
+                curdir) if os.path.isdir(os.path.join(curdir, name))]
         except:
             subdirs = []
         if ".git" in subdirs:
@@ -208,20 +212,22 @@ def listModifiedRepos():
 
     i = 0
     for repo in repos:
-        progressPrint(round(100*i/len(repos)))
+        progressPrint(round(100 * i / len(repos)))
         i += 1
         os.chdir(repo)
         git("remote update", False)
         out, error = git("status -uno", False)
         if "up-to-date" not in out and "is ahead of" in out:
             unPushedRepos.append(repo)
-        if "Changes not staged for commit" in out:
+        if "Changes not staged for commit" in out or "nderungen, die nicht zum Commit vorgemerkt sind" in out:
             unCommittedRepos.append(repo)
 
-    prettyPrint("Found", len(unPushedRepos), " repos that haven't been pushed to remote yet:")
+    prettyPrint("Found", len(unPushedRepos),
+                " repos that haven't been pushed to remote yet:")
     for repo in unPushedRepos:
         prettyPrint("  ", os.path.relpath(repo, cwd))
-    prettyPrint("\nFound", len(unCommittedRepos), " repos that have unstaged changes:")
+    prettyPrint("\nFound", len(unCommittedRepos),
+                " repos that have unstaged changes:")
     for repo in unCommittedRepos:
         prettyPrint("  ", os.path.relpath(repo, cwd))
 
