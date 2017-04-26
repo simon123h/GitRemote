@@ -35,3 +35,4 @@ Provides quick shortcuts for longer
 ## Issues
 - TODO: elaborate comments / documentation
 - TODO: Error when returning from branching menu
+- TODO: support for english language in merge conflict detection
