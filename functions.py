@@ -217,8 +217,6 @@ def listModifiedRepos():
         os.chdir(repo)
         git("remote update", False)
         out, error = git("status -uno", False)
-        print(out)
-        print()
         if ("up-to-date" not in out and "is ahead of" in out) or ("auf dem selben Stand" not in out and "Branch ist vor" in out):
             unPushedRepos.append(repo)
         if "Changes not staged for commit" in out or "nderungen, die nicht zum Commit vorgemerkt sind" in out:
