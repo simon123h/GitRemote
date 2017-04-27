@@ -35,3 +35,4 @@ Provides quick shortcuts for longer
 ## Issues
 - TODO: elaborate comments / documentation
 - TODO: Error when returning from branching menu
+- TODO: start with parameters (e.g. "gitremote -p" to push)
